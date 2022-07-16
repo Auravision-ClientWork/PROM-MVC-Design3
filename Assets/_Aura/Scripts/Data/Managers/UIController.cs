@@ -5,29 +5,18 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-   public DataManager dataManager;
+    public GameObject commitRetrievePage;
+    public GameObject scorePage;
+    public GameObject menuPage;
+    public GameObject aboutPage;
 
-    public TMP_InputField akInput;
-    public TMP_InputField visitDateInput;
-    public TMP_InputField regionInput;
-    public TMP_InputField comorbiditiesInput;
-    public TMP_InputField complaintsInput;
-    public TMP_InputField scoreInput;
-    public TMP_InputField searchInput;
-
-    public TMP_Text displayInfoText;
-
-    public void HandleCommitButton()
+    public void CloseAllPages()
     {
-        dataManager.TestCommitInfo(int.Parse(akInput.text), visitDateInput.text, regionInput.text,
-            comorbiditiesInput.text, complaintsInput.text, float.Parse(scoreInput.text));
-    }
-
-    public void HandleRetrieveButton()
-    {
-        int searchNo = int.Parse(searchInput.text.ToString());
-        string incomingInfo = dataManager.TestRetrieveInfo(searchNo);
-
-        displayInfoText.text = incomingInfo;
+        //ToDo: modify code so that it finds all 'pages' attached to this gameobject and 
+        //closes them
+        commitRetrievePage.SetActive(false);
+        scorePage.SetActive(false);
+        menuPage.SetActive(false);
+        aboutPage.SetActive(false);
     }
 }

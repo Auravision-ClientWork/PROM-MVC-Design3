@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93f1aafef38a0b45be94eb954c96d0b, type: 3}
+  m_Name: KoosFunctionDailyLiving
+  m_EditorClassIdentifier: 
+  <ScorePaResponse>k__BackingField: 1.47
+  <BestScore>k__BackingField: 100
+  <WorstScore>k__BackingField: 0
+  <isIncrementing>k__BackingField: 0
+  sections:
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Descending Stairs?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Ascending Stairs?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Rising From sitting?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Standing?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Bending to floor/pick up object?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Walking on flat surface?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Getting in/out of car?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Going shoppin?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Putting on socks/stockings
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Rising from bed?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Taking off socks/stockings?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Lying in bed (turning over, maintaining knee position)?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Getting in/out of bath?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Sitting?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Getting on/off toilet?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Doing heavy domestic duties(e.g moving heavy boxes)?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme
+  - prompt: What degree of difficulty have you experienced in the last week due to
+      your knee while Doing light domestic duties(e.g cooking)?
+    responses:
+    - None
+    - Mild
+    - Moderate
+    - Severe
+    - Extreme

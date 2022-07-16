@@ -24,3 +24,19 @@ public class PatientInfo
         Score = score;
     }
 }
+public enum Regions
+{
+    Cervical,
+    UpperLimb,
+    Back,
+    Hip,
+    Knee,
+    FootAndAnkle
+}
+
+[System.Serializable]
+public class SectionStrucure
+{
+    [TextArea(2,4)]public string prompt;
+  [NonReorderable] [TextArea(2,4)] public string[] responses;
+}
