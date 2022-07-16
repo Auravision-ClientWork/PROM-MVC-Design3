@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Text;
 
 /// <summary>
 /// Commits new patient data via the SaveAndLoadSystem, retrieves data via the SaveAndLoad system,
@@ -66,7 +67,9 @@ public class DataManager : MonoBehaviour
     }
     public string TestRetrieveInfo(int _ak)
     {
+        StringBuilder sb = new StringBuilder();
         string retrievedInfo = "";
+        
         if( SaveLoadSystem.RetrievePatientInfo(out  Dictionary<int, List<PatientInfo>> data))
         {
             //return patient akNo,region, and score
@@ -75,12 +78,23 @@ public class DataManager : MonoBehaviour
                 data.TryGetValue(_ak, out List<PatientInfo> value);
                 foreach (var item in value)
                 {
-
+                    sb.AppendLine(item.akNo+ " | "+item.VisitDate + " | "+ item.Score);
                 }
+                retrievedInfo = sb.ToString();
+                return retrievedInfo;
+            }
+            else
+            {
+                retrievedInfo = "No such patient in system!";
+                return retrievedInfo;
             }
         }
-
-        return retrievedInfo;
+        else
+        {
+            retrievedInfo = "You patient data in system"!;
+            return retrievedInfo;
+        }
+       
     } 
 
     #endregion

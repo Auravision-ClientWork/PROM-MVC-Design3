@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     public TMP_InputField comorbiditiesInput;
     public TMP_InputField complaintsInput;
     public TMP_InputField scoreInput;
+    public TMP_InputField searchInput;
 
     public TMP_Text displayInfoText;
 
@@ -24,7 +25,8 @@ public class UIController : MonoBehaviour
 
     public void HandleRetrieveButton()
     {
-        string incomingInfo = dataManager.TestRetrieveInfo();
+        int searchNo = int.Parse(searchInput.text.ToString());
+        string incomingInfo = dataManager.TestRetrieveInfo(searchNo);
 
         displayInfoText.text = incomingInfo;
     }
