@@ -6,7 +6,12 @@ using TMPro;
 public class ScoreBackend : MonoBehaviour
 {
     [Header("Score Scriptable Objects")]
-    public List<GenericSO> scoreBackEnds;
+    public GenericSO CervicalScoreData;
+    public GenericSO UpperLimbScoreData;
+    public GenericSO BackScoreData;
+    public GenericSO HipScoreData;
+    [NonReorderable]public GenericSO[] KneeScoreData;
+    public GenericSO FootAndAnkleScoreData;
     [Space(50)]
 
     #region Utility members
@@ -27,6 +32,12 @@ public class ScoreBackend : MonoBehaviour
     [SerializeField] private Regions currentRegion;
 
 
+    public static ScoreBackend Instance { get; private set; }
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         SpawnResponseButtons(5);
@@ -43,11 +54,41 @@ public class ScoreBackend : MonoBehaviour
         }
     }
 
+    public void SetCurrentScoreData(Regions _region)
+    {
+        switch (_region)
+        {
+            case Regions.Cervical:
+                Debug.Log("Cervical Region Selected.");
+                break;
+            case Regions.UpperLimb:
+                LogOutMessage("Upper limb selected");
+                break;
+            case Regions.Back:
+                LogOutMessage("Back selected");
+                break;
+            case Regions.Knee:
+                LogOutMessage("Knee selected");
+                break;
+            case Regions.Hip:
+                LogOutMessage("Hip selected.");
+                break;
+            case Regions.FootAndAnkle:
+                LogOutMessage("Foot and Ankle selected");
+                break;
+        }
+    }
     public void TurnOffAllUtilityButtons()
     {
         commitBtn.SetActive(false);
         nextBtn.SetActive(false);
         prevBtn.SetActive(false);
         undoBtn.SetActive(false);
+    }
+
+
+    private void LogOutMessage(string _message)
+    {
+        Debug.Log(_message);
     }
 }

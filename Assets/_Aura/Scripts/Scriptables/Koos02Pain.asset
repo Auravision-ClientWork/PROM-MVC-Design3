@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e93f1aafef38a0b45be94eb954c96d0b, type: 3}
-  m_Name: KoosPain
+  m_Name: Koos02Pain
   m_EditorClassIdentifier: 
   <ScorePaResponse>k__BackingField: 2.78
   <BestScore>k__BackingField: 100
