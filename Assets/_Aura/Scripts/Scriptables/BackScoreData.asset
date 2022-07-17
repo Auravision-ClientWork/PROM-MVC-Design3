@@ -41,17 +41,60 @@ MonoBehaviour:
     - 
     - 
     - 
-  - prompt: 
-    responses: []
-  - prompt: 
-    responses: []
-  - prompt: 
-    responses: []
-  - prompt: 
-    responses: []
-  - prompt: 
-    responses: []
-  - prompt: 
-    responses: []
-  - prompt: 
-    responses: []
+  - prompt: Walking
+    responses:
+    - Pain does not prevent me from walking any distance
+    - Pain prevents me from walking more than 1 mile
+    - Pain prevents me from walking more than a 1/4 mile
+    - Pain prevents me from walking more than 100 yards
+    - I can walk only with crutches or a stick
+    - I am in bed most of the time and have to crawl to the toilet
+  - prompt: Sitting
+    responses:
+    - I can sit in any chair as long as I like
+    - I can sit in my favorite chair as long as I like
+    - Pain prevents me from sitting for more than 1 hour
+    - Pain prevents me from sitting for more than 1/2 hour
+    - Pain prevents me from sitting for more than 10 mins
+    - Pain prevents me from sitting at all
+  - prompt: Standing
+    responses:
+    - I can stand as long as I want without extra pain
+    - I can stand as long as I want but with extra pain
+    - Pain prevents me from standing for more than 1 hour
+    - Pain prevents me from standing for more than 1/2 hour
+    - Pain prevents me from standing for more than 10 minutes
+    - Pain prevents me from standing at all
+  - prompt: Sleeping
+    responses:
+    - My sleep is never disturbed by pain
+    - My sleep is occasionally disturbed by pain
+    - Because of pain i have less than 6 hours of sleep
+    - Because of pain I have less than 4 hours of sleep
+    - Because of pain I have less than 2 hours of sleep
+    - Pain prevents me from sleeping at all
+  - prompt: Sex Life( If applicable)
+    responses:
+    - My sex life is normal and causes no extra pain
+    - My sex life is normal but causes some extra pain
+    - My sex life is nearly normal but is very painful
+    - My sex life is severely restricted by pain
+    - My sex life is nearly absent because of pain
+    - Pain prevents any sex life at all
+  - prompt: Social life
+    responses:
+    - My social life is normal and causes no extra pain
+    - My social life is normal, but increases the degree of pain
+    - Pain has no significant effect on my social life apart from limiting my more
+      energetic interests (e.g , sports , dancing)
+    - Pain has restricted my social life and I do not go out as often
+    - Pain has restricted my social life to my home
+    - I have no social life because of pain
+  - prompt: Travelling
+    responses:
+    - I can travel anywhere without pain
+    - I can travel anywhere but it gives extra pain.
+    - Pain is bad but I manage journeys  of over 2 hours
+    - Pain restricts me to journeys of less than 1 hour
+    - Pain restricts me to short necessary journeys under 30 minutes
+    - 'Pain prevents me from travelling except to receive treatment '
