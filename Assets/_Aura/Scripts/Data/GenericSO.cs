@@ -27,4 +27,9 @@ public class GenericSO : ScriptableObject
     {
         return sections[_sectionCount].responses[_responseCount];
     }
+
+    public SectionStrucure[] GetSections()
+    {
+        return sections;
+    }
 }

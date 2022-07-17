@@ -19,5 +19,6 @@ public class RegionSelectButton : MonoBehaviour
     {
         //ToDo:: inform the Score back end what the current region selected is
         ScoreBackend.Instance.SetCurrentScoreData(_region);
+        UIController.Instance.ShowScorePage();
     }
 }

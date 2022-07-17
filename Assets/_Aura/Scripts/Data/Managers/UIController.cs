@@ -10,8 +10,11 @@ public class UIController : MonoBehaviour
     public GameObject regionSelectPage;
     public GameObject aboutPage;
 
+    public static UIController Instance { get; private set; }
+
     private void Awake()
     {
+        Instance = this;
         ShowCommitRetrievePage();
     }
     public void CloseAllPages()
