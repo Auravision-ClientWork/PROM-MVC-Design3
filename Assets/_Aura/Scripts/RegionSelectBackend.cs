@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RegionSelectBackend : MonoBehaviour
 {
+    public DataManager dataManager;
     public GameObject regionSelectButton;
     public Transform regionSelectButtonsHolder;
     public string[] regions;

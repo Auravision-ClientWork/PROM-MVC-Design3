@@ -15,11 +15,11 @@ public class DataManager : MonoBehaviour
     private PatientInfo currentPatient;
     private int currentPatientAk;
     private string currentPatientVisitDate;
-    private List<string> currentPatientComorbidities;
-    private List<string> currentPatientComplaints;
+    private string currentPatientComorbidities;
+    private string currentPatientComplaints;
     private string currentPatientRegion;
     private float currentPatientScore;
-    public void CommitBioData(int _ak, string _visitDate, List<string> _comorbidities = null, List<string> complaints = null)
+    public void CommitBioData(int _ak, string _visitDate, string _comorbidities = null, string complaints = null)
     {
         //ToDo: adds ak number, visit date,comorbidities and complaints to the currentPatient object 
         currentPatientAk = _ak;
@@ -28,10 +28,14 @@ public class DataManager : MonoBehaviour
         currentPatientComplaints = complaints;
     }
 
-    public void CommitScoreData(string _region, float _score)
+    public void CommitRegionData(string _region)
     {
         //ToDo: adds region, score data to the currentPatientObject
-        currentPatientRegion = _region;
+        currentPatientRegion = _region;    
+    }
+
+    public void CommitScoreData(float _score)
+    {
         currentPatientScore = _score;
     }
 
@@ -50,52 +54,52 @@ public class DataManager : MonoBehaviour
     }
 
     #region Test Utility
-    public void TestCommitInfo(int _ak, string _visitDate, string _region, string _comorbidities, string _complaints, float _score)
-    {
-        currentPatientComorbidities = new List<string>();
-        currentPatientComorbidities.Add(_comorbidities);
+    //public void TestCommitInfo(int _ak, string _visitDate, string _region, string _comorbidities, string _complaints, float _score)
+    //{
+    //    currentPatientComorbidities = new List<string>();
+    //    currentPatientComorbidities.Add(_comorbidities);
 
-        currentPatientComplaints = new List<string>();
-        currentPatientComplaints.Add(_complaints);
+    //    currentPatientComplaints = new List<string>();
+    //    currentPatientComplaints.Add(_complaints);
 
-        currentPatientAk = _ak;
-        currentPatientVisitDate = _visitDate;
-        currentPatientRegion = _region;
-        currentPatientScore = _score;
+    //    currentPatientAk = _ak;
+    //    currentPatientVisitDate = _visitDate;
+    //    currentPatientRegion = _region;
+    //    currentPatientScore = _score;
 
-        SaveCurrentPatientData();
-    }
-    public string TestRetrieveInfo(int _ak)
-    {
-        StringBuilder sb = new StringBuilder();
-        string retrievedInfo = "";
+    //    SaveCurrentPatientData();
+    //}
+    //public string TestRetrieveInfo(int _ak)
+    //{
+    //    StringBuilder sb = new StringBuilder();
+    //    string retrievedInfo = "";
         
-        if( SaveLoadSystem.RetrievePatientInfo(out  Dictionary<int, List<PatientInfo>> data))
-        {
-            //return patient akNo,region, and score
-            if (data.ContainsKey(_ak))
-            {
-                data.TryGetValue(_ak, out List<PatientInfo> value);
-                foreach (var item in value)
-                {
-                    sb.AppendLine(item.akNo+ " | "+item.VisitDate + " | "+ item.Score);
-                }
-                retrievedInfo = sb.ToString();
-                return retrievedInfo;
-            }
-            else
-            {
-                retrievedInfo = "No such patient in system!";
-                return retrievedInfo;
-            }
-        }
-        else
-        {
-            retrievedInfo = "You patient data in system"!;
-            return retrievedInfo;
-        }
+    //    if( SaveLoadSystem.RetrievePatientInfo(out  Dictionary<int, List<PatientInfo>> data))
+    //    {
+    //        //return patient akNo,region, and score
+    //        if (data.ContainsKey(_ak))
+    //        {
+    //            data.TryGetValue(_ak, out List<PatientInfo> value);
+    //            foreach (var item in value)
+    //            {
+    //                sb.AppendLine(item.akNo+ " | "+item.VisitDate + " | "+ item.Score);
+    //            }
+    //            retrievedInfo = sb.ToString();
+    //            return retrievedInfo;
+    //        }
+    //        else
+    //        {
+    //            retrievedInfo = "No such patient in system!";
+    //            return retrievedInfo;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        retrievedInfo = "You patient data in system"!;
+    //        return retrievedInfo;
+    //    }
        
-    } 
+    //} 
 
     #endregion
 }

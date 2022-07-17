@@ -7,16 +7,35 @@ public class UIController : MonoBehaviour
 {
     public GameObject commitRetrievePage;
     public GameObject scorePage;
-    public GameObject menuPage;
+    public GameObject regionSelectPage;
     public GameObject aboutPage;
 
+    private void Awake()
+    {
+        ShowCommitRetrievePage();
+    }
     public void CloseAllPages()
     {
         //ToDo: modify code so that it finds all 'pages' attached to this gameobject and 
         //closes them
         commitRetrievePage.SetActive(false);
         scorePage.SetActive(false);
-        menuPage.SetActive(false);
-        aboutPage.SetActive(false);
+        regionSelectPage.SetActive(false);
+        //aboutPage.SetActive(false);
+    }
+    public void ShowRegionSelectPage()
+    {
+        CloseAllPages();
+        regionSelectPage.SetActive(true);
+    }
+    public void ShowScorePage()
+    {
+        CloseAllPages();
+        scorePage.SetActive(true);
+    }
+    public void ShowCommitRetrievePage()
+    {
+        CloseAllPages();
+        commitRetrievePage.SetActive(true);
     }
 }
