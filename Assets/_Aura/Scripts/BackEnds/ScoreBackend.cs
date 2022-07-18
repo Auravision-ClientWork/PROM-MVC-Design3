@@ -127,6 +127,7 @@ public class ScoreBackend : MonoBehaviour
             //disable next button
             nextBtn.SetActive(false);
         }
+        //ToDo:Delete this if not necessary
         //else
         //{
         //    if (nextBtn.activeInHierarchy == false)
@@ -145,9 +146,16 @@ public class ScoreBackend : MonoBehaviour
             nextBtn.SetActive(true);
         }
 
-        //Take away the last score from the max score
-        currentMaxScore -= scoreHistory[currentSection - 1];
-        scoreHistory.RemoveAt(currentSection - 1);
+        if (currentRegion.isIncrementing)
+        {
+            currentMaxScore -= scoreHistory[currentSection-1];
+            scoreHistory.RemoveAt(currentSection-1);
+        }
+        else
+        {
+            currentMaxScore += scoreHistory[currentSection-1];
+            scoreHistory.RemoveAt(currentSection-1);
+        }
 
         //register that we have moved down to the previous section
         currentSection--;
