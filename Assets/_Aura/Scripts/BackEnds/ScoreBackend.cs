@@ -12,7 +12,7 @@ public class ScoreBackend : MonoBehaviour
     public GenericSO UpperLimbScoreData;
     public GenericSO BackScoreData;
     public GenericSO HipScoreData;
-    [NonReorderable] public GenericSO[] KneeScoreData;
+    public GenericSO KneeScoreData;
     public GenericSO FootAndAnkleScoreData;
 
     public GameObject testPanel;
@@ -74,7 +74,8 @@ public class ScoreBackend : MonoBehaviour
                 break;
             case Regions.Knee:
                 //ToDo:figure out what to do if the region selected is the knee
-                HandleKneeRegionSelected();
+                currentRegion = KneeScoreData;
+                HandleCurrentRegionSelected();
                 break;
             case Regions.Hip:
                 currentRegion = HipScoreData;

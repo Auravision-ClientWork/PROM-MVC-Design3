@@ -315,12 +315,7 @@ MonoBehaviour:
   UpperLimbScoreData: {fileID: 11400000, guid: d738d8cd869e964438b78fb8d969e242, type: 2}
   BackScoreData: {fileID: 11400000, guid: 97624b7ec7fae1445b4d420e7725476b, type: 2}
   HipScoreData: {fileID: 11400000, guid: 00877976ee7797c43aace1834329ee29, type: 2}
-  KneeScoreData:
-  - {fileID: 11400000, guid: c8645d82fec4bcd4eb0ae7510b89e9da, type: 2}
-  - {fileID: 11400000, guid: 3fb95391bf413714ab160882d6861b9a, type: 2}
-  - {fileID: 11400000, guid: 116a093a308a3cd42b5b64fbba53a10d, type: 2}
-  - {fileID: 11400000, guid: 5e2be4272e733a041a658cf6b0343323, type: 2}
-  - {fileID: 11400000, guid: 2cbed4428dbf6a44a822f7c621f635a3, type: 2}
+  KneeScoreData: {fileID: 11400000, guid: aeb42d2c727547a4d96c1df82fb27ccb, type: 2}
   FootAndAnkleScoreData: {fileID: 11400000, guid: 84565c37e740a6f44975fe3834cf0834, type: 2}
   testPanel: {fileID: 232591765}
   confirmCommitPanel: {fileID: 1615025371}
