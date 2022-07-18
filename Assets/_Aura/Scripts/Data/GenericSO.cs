@@ -10,6 +10,7 @@ public class GenericSO : ScriptableObject
     [field:SerializeField]public float WorstScore { get; private set; }
     [field: SerializeField] public bool isIncrementing { get; private set; }
 
+    [field: SerializeField] public float DoNothingScore { get;private set; }
     [NonReorderable]
     public SectionStrucure[] sections;
 

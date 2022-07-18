@@ -15,7 +15,8 @@ MonoBehaviour:
   <ScorePaResponse>k__BackingField: 0.96
   <BestScore>k__BackingField: 100
   <WorstScore>k__BackingField: 0
-  <isIncrementing>k__BackingField: 1
+  <isIncrementing>k__BackingField: 0
+  <DoNothingScore>k__BackingField: 100
   sections:
   - prompt: Standing
     responses:

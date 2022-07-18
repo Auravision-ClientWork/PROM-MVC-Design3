@@ -16,6 +16,7 @@ MonoBehaviour:
   <BestScore>k__BackingField: 60
   <WorstScore>k__BackingField: 0
   <isIncrementing>k__BackingField: 0
+  <DoNothingScore>k__BackingField: 60
   sections:
   - prompt: How would you describe the pain you usually have in your Knee?
     responses:

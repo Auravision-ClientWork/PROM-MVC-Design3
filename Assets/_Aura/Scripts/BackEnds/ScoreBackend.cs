@@ -94,7 +94,7 @@ public class ScoreBackend : MonoBehaviour
         //spawn initial buttons on screen
         //set first prompt for the region selected on screen
         //turn off all buttons except next button
-
+        currentMaxScore = currentRegion.DoNothingScore;
         var sections = currentRegion.GetSections();
         var responseTexts = sections[0].responses;
         promptText.text = sections[0].prompt;
@@ -102,10 +102,7 @@ public class ScoreBackend : MonoBehaviour
         currentSection = 0;
         prevBtn.SetActive(false);
     }
-    public void HandleKneeRegionSelected()
-    {
-
-    }
+  
     public void TurnOffAllUtilityButtons()
     {
         commitBtn.SetActive(false);
@@ -117,6 +114,7 @@ public class ScoreBackend : MonoBehaviour
     public void HandleNextButtonClicked()
     {
         undoBtn.SetActive(false);
+        nextBtn.SetActive(false);
         if (prevBtn.activeInHierarchy == false)
         {
             prevBtn.SetActive(true);
@@ -129,13 +127,13 @@ public class ScoreBackend : MonoBehaviour
             //disable next button
             nextBtn.SetActive(false);
         }
-        else
-        {
-            if (nextBtn.activeInHierarchy == false)
-            {
-                nextBtn.SetActive(true);
-            }
-        }
+        //else
+        //{
+        //    if (nextBtn.activeInHierarchy == false)
+        //    {
+        //        nextBtn.SetActive(true);
+        //    }
+        //}
         ShowNextSection();
     }
 
@@ -177,8 +175,17 @@ public class ScoreBackend : MonoBehaviour
     {
         //turn the buttons back to base state
         SetResponseButtonsInactive(false);
-        currentMaxScore-= scoreHistory[currentSection];
-        scoreHistory.RemoveAt(currentSection);
+        if (currentRegion.isIncrementing)
+        {
+            currentMaxScore -= scoreHistory[currentSection];
+            scoreHistory.RemoveAt(currentSection);
+        }
+        else
+        {
+            currentMaxScore += scoreHistory[currentSection];
+            scoreHistory.RemoveAt(currentSection);
+        }
+       
         undoBtn.SetActive(false);
     }
 
@@ -201,10 +208,23 @@ public class ScoreBackend : MonoBehaviour
     }
     public void SetSelectedScore(int _scoreMultiplier)
     {
-        SetResponseButtonsInactive(true, _scoreMultiplier);
+        nextBtn.SetActive(true);
+        Debug.Log(_scoreMultiplier);
+        SetResponseButtonsInactive(true, _scoreMultiplier-1);
         float scorePaResponse = currentRegion.ScorePaResponse;
         scoreHistory.Add(scorePaResponse * _scoreMultiplier);
-        currentMaxScore += (scorePaResponse * _scoreMultiplier);
+        if (currentRegion.isIncrementing)
+        {
+           currentMaxScore += (scorePaResponse * _scoreMultiplier);
+        }
+        else
+        {
+            currentMaxScore -= (scorePaResponse * _scoreMultiplier);
+            if(currentMaxScore < 0)
+            {
+                currentMaxScore = 0;
+            }
+        }
 
         //are we at the last section
         if (currentSection == currentRegion.GetSections().Length - 1)
@@ -232,7 +252,7 @@ public class ScoreBackend : MonoBehaviour
         {
             btnObj = Instantiate(responseBtn);
             btnObj.transform.SetParent(responseBtnParent, false);
-            btnObj.GetComponent<ResponseButton>().SetUpResponseButton(i, responses[i]);
+            btnObj.GetComponent<ResponseButton>().SetUpResponseButton(i+1, responses[i]);
             responseButtons.Add(btnObj);
         }
     }
