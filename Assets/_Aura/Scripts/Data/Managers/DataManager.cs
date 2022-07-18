@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System.Text;
+using System;
 
 /// <summary>
 /// Commits new patient data via the SaveAndLoadSystem, retrieves data via the SaveAndLoad system,
@@ -33,6 +34,11 @@ public class DataManager : MonoBehaviour
         currentPatientVisitDate = _visitDate;
         currentPatientComorbidities = _comorbidities;
         currentPatientComplaints = complaints;
+    }
+
+    internal void ResetCurrentPatientData()
+    {
+       
     }
 
     public void CommitRegionData(string _region)

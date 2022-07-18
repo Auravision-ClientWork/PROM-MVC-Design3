@@ -21,5 +21,6 @@ public class RegionSelectButton : MonoBehaviour
         ScoreBackend.Instance.SetCurrentScoreData(_region);
         UIController.Instance.ShowScorePage();
         DataManager.Instance.CommitRegionData(_region.ToString());
+        AudioManager.Instance.PlaySelectionActionFX();
     }
 }

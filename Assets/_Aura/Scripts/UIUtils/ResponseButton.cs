@@ -16,6 +16,7 @@ public class ResponseButton : MonoBehaviour
 
     private void SetScore(int _scoreMultiplier)
     {
+        AudioManager.Instance.PlaySelectionActionFX();
         ScoreBackend.Instance.SetSelectedScore(_scoreMultiplier);
     }
 }

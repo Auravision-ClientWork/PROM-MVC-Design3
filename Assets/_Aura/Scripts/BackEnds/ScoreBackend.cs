@@ -113,6 +113,7 @@ public class ScoreBackend : MonoBehaviour
 
     public void HandleNextButtonClicked()
     {
+        AudioManager.Instance.PlayNextBtnFX();
         undoBtn.SetActive(false);
         nextBtn.SetActive(false);
         if (prevBtn.activeInHierarchy == false)
@@ -140,6 +141,7 @@ public class ScoreBackend : MonoBehaviour
 
     public void HandlePrevButtonClicked()
     {
+        AudioManager.Instance.PlayNextBtnFX();
         //turn on Next Button if it's off
         if (nextBtn.activeInHierarchy == false)
         {
@@ -181,6 +183,7 @@ public class ScoreBackend : MonoBehaviour
 
     public void HandleUndoButtonClicked()
     {
+        AudioManager.Instance.PlayNextBtnFX();
         //turn the buttons back to base state
         SetResponseButtonsInactive(false);
         if (currentRegion.isIncrementing)
@@ -199,18 +202,22 @@ public class ScoreBackend : MonoBehaviour
 
     public void HandleCommitButtonClicked()
     {
+        AudioManager.Instance.PlaySelectionActionFX();
         CloseAllPanels();
         confirmCommitPanel.SetActive(true);
     }
 
     public void HandleConfirmCommitButtonClicked()
     {
+        AudioManager.Instance.PlaySelectionActionFX();
         //take the score and send it to the Datamanager
         DataManager.Instance.CommitScoreData(currentMaxScore);
+        UIController.Instance.ShowMenuPage();
     }
 
     public void HandleCancelCommitButtonClicked()
     {
+        AudioManager.Instance.PlayNextBtnFX();
         CloseAllPanels();
         testPanel.SetActive(true);
     }
