@@ -48,7 +48,7 @@ public class ScoreBackend : MonoBehaviour
 
     private void Start()
     {
-
+        commitBtn.SetActive(false);
     }
 
 
@@ -135,10 +135,13 @@ public class ScoreBackend : MonoBehaviour
 
     public void HandlePrevButtonClicked()
     {
+        
         if(nextBtn.activeInHierarchy == false)
         {
             nextBtn.SetActive(true);
         }
+        currentMaxScore -= scoreHistory[currentSection-1];
+        scoreHistory.RemoveAt(currentSection - 1);
         currentSection--;
         if (currentSection <= 0)
         {
@@ -146,6 +149,15 @@ public class ScoreBackend : MonoBehaviour
             //diable prev button
             prevBtn.SetActive(false);
         }
+        if(currentSection >= currentRegion.GetSections().Length - 1)
+        {
+            if (commitBtn.activeInHierarchy == true)
+            {
+                commitBtn.SetActive(false);
+            }
+        }
+
+        //reduce the max score
       
         ShowNextSection();
     }
@@ -155,6 +167,14 @@ public class ScoreBackend : MonoBehaviour
         float scorePaResponse = currentRegion.ScorePaResponse;
         scoreHistory.Add(scorePaResponse * _scoreMultiplier);
         currentMaxScore += (scorePaResponse * _scoreMultiplier);
+
+        //are we at the last section
+        if (currentSection == currentRegion.GetSections().Length - 1)
+        {
+            //we are at the last section and have selected something so
+            //can now show the commit button
+            commitBtn.SetActive(true);
+        }
     }
     #region Private Utility Methods
     private void ShowNextSection()
