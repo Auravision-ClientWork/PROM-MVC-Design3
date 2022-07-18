@@ -15,7 +15,8 @@ public class ScoreBackend : MonoBehaviour
     [NonReorderable] public GenericSO[] KneeScoreData;
     public GenericSO FootAndAnkleScoreData;
 
-   
+    public GameObject testPanel;
+    public GameObject confirmCommitPanel;
 
     [Space(50)]
 
@@ -48,7 +49,10 @@ public class ScoreBackend : MonoBehaviour
 
     private void Start()
     {
+        CloseAllPanels();
+        testPanel.SetActive(true);
         commitBtn.SetActive(false);
+        undoBtn.SetActive(false);
     }
 
 
@@ -111,7 +115,8 @@ public class ScoreBackend : MonoBehaviour
 
     public void HandleNextButtonClicked()
     {
-        if(prevBtn.activeInHierarchy == false)
+        undoBtn.SetActive(false);
+        if (prevBtn.activeInHierarchy == false)
         {
             prevBtn.SetActive(true);
         }
@@ -135,21 +140,26 @@ public class ScoreBackend : MonoBehaviour
 
     public void HandlePrevButtonClicked()
     {
-        
-        if(nextBtn.activeInHierarchy == false)
+        //turn on Next Button if it's off
+        if (nextBtn.activeInHierarchy == false)
         {
             nextBtn.SetActive(true);
         }
-        currentMaxScore -= scoreHistory[currentSection-1];
+
+        //Take away the last score from the max score
+        currentMaxScore -= scoreHistory[currentSection - 1];
         scoreHistory.RemoveAt(currentSection - 1);
+
+        //register that we have moved down to the previous section
         currentSection--;
+
         if (currentSection <= 0)
         {
             //we are back at the beginning
             //diable prev button
             prevBtn.SetActive(false);
         }
-        if(currentSection >= currentRegion.GetSections().Length - 1)
+        if (currentSection >= currentRegion.GetSections().Length - 1)
         {
             if (commitBtn.activeInHierarchy == true)
             {
@@ -158,12 +168,39 @@ public class ScoreBackend : MonoBehaviour
         }
 
         //reduce the max score
-      
+
         ShowNextSection();
+    }
+
+    public void HandleUndoButtonClicked()
+    {
+        //turn the buttons back to base state
+        SetResponseButtonsInactive(false);
+        currentMaxScore-= scoreHistory[currentSection];
+        scoreHistory.RemoveAt(currentSection);
+        undoBtn.SetActive(false);
+    }
+
+    public void HandleCommitButtonClicked()
+    {
+        CloseAllPanels();
+        confirmCommitPanel.SetActive(true);
+    }
+
+    public void HandleConfirmCommitButtonClicked()
+    {
+        //take the score and send it to the Datamanager
+        DataManager.Instance.CommitScoreData(currentMaxScore);
+    }
+
+    public void HandleCancelCommitButtonClicked()
+    {
+        CloseAllPanels();
+        testPanel.SetActive(true);
     }
     public void SetSelectedScore(int _scoreMultiplier)
     {
-        SetResponseButtonsInactive(_scoreMultiplier);
+        SetResponseButtonsInactive(true, _scoreMultiplier);
         float scorePaResponse = currentRegion.ScorePaResponse;
         scoreHistory.Add(scorePaResponse * _scoreMultiplier);
         currentMaxScore += (scorePaResponse * _scoreMultiplier);
@@ -175,6 +212,8 @@ public class ScoreBackend : MonoBehaviour
             //can now show the commit button
             commitBtn.SetActive(true);
         }
+
+        undoBtn.SetActive(true);
     }
     #region Private Utility Methods
     private void ShowNextSection()
@@ -197,19 +236,40 @@ public class ScoreBackend : MonoBehaviour
         }
     }
 
-    private void SetResponseButtonsInactive(int _activeBtn)
+    private void SetResponseButtonsInactive(bool _value, int _activeBtn = 0)
     {
-        for(int i = 0;i< responseButtons.Count; i++)
+        switch (_value)
         {
-            responseButtons[i].GetComponent<Button>().enabled = false;
-            responseButtons[i].GetComponent<Image>().color = nonSelectedResponseBtnColor;
+            case true:
+                for (int i = 0; i < responseButtons.Count; i++)
+                {
+                    responseButtons[i].GetComponent<Button>().enabled = false;
+                    responseButtons[i].GetComponent<Image>().color = nonSelectedResponseBtnColor;
 
-            if (i == _activeBtn)
-            {
-                responseButtons[i].GetComponent<Button>().enabled = true;
-                responseButtons[i].GetComponent<Image>().color = selectedResponseBtnColor;
-            }
+                    if (i == _activeBtn)
+                    {
+                        responseButtons[i].GetComponent<Button>().enabled = true;
+                        responseButtons[i].GetComponent<Image>().color = selectedResponseBtnColor;
+                    }
+                }
+                break;
+
+                case false:
+                for (int i = 0; i < responseButtons.Count; i++)
+                {
+                    responseButtons[i].GetComponent<Button>().enabled = true;
+                    responseButtons[i].GetComponent<Image>().color = baseResponseBtnColor;
+          
+                }
+                break;
         }
+
+    }
+
+   private void CloseAllPanels()
+    {
+        confirmCommitPanel.SetActive(false);
+        testPanel.SetActive(false);
     }
     private void RefreshResponseButtons()
     {

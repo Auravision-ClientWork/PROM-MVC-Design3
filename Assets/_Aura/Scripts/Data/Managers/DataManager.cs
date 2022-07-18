@@ -13,12 +13,19 @@ public class DataManager : MonoBehaviour
 {
     //cache of the info of the current patient being evaluated 
     private PatientInfo currentPatient;
-    private int currentPatientAk;
-    private string currentPatientVisitDate;
-    private string currentPatientComorbidities;
-    private string currentPatientComplaints;
-    private string currentPatientRegion;
-    private float currentPatientScore;
+    [SerializeField]private int currentPatientAk;
+    [SerializeField]private string currentPatientVisitDate;
+    [SerializeField] private string currentPatientComorbidities;
+    [SerializeField] private string currentPatientComplaints;
+    [SerializeField] private string currentPatientRegion;
+    [SerializeField] private float currentPatientScore;
+
+
+    public static DataManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void CommitBioData(int _ak, string _visitDate, string _comorbidities = null, string complaints = null)
     {
         //ToDo: adds ak number, visit date,comorbidities and complaints to the currentPatient object 
