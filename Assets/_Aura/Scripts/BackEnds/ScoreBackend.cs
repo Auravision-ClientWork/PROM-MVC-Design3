@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class ScoreBackend : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class ScoreBackend : MonoBehaviour
     public GenericSO HipScoreData;
     [NonReorderable] public GenericSO[] KneeScoreData;
     public GenericSO FootAndAnkleScoreData;
+
+   
+
     [Space(50)]
 
     #region Utility members
@@ -35,11 +39,10 @@ public class ScoreBackend : MonoBehaviour
     [SerializeField] private GenericSO currentRegion;
     [SerializeField] private int currentSection;
     [SerializeField] private List<float> scoreHistory = new List<float>();
-
+    [SerializeField] private float currentMaxScore;
     public static ScoreBackend Instance { get; private set; }
     private void Awake()
     {
-
         Instance = this;
     }
 
@@ -146,7 +149,13 @@ public class ScoreBackend : MonoBehaviour
       
         ShowNextSection();
     }
-
+    public void SetSelectedScore(int _scoreMultiplier)
+    {
+        SetResponseButtonsInactive(_scoreMultiplier);
+        float scorePaResponse = currentRegion.ScorePaResponse;
+        scoreHistory.Add(scorePaResponse * _scoreMultiplier);
+        currentMaxScore += (scorePaResponse * _scoreMultiplier);
+    }
     #region Private Utility Methods
     private void ShowNextSection()
     {
@@ -163,11 +172,25 @@ public class ScoreBackend : MonoBehaviour
         {
             btnObj = Instantiate(responseBtn);
             btnObj.transform.SetParent(responseBtnParent, false);
-            btnObj.GetComponentInChildren<TMP_Text>().text = responses[i];
+            btnObj.GetComponent<ResponseButton>().SetUpResponseButton(i, responses[i]);
             responseButtons.Add(btnObj);
         }
     }
 
+    private void SetResponseButtonsInactive(int _activeBtn)
+    {
+        for(int i = 0;i< responseButtons.Count; i++)
+        {
+            responseButtons[i].GetComponent<Button>().enabled = false;
+            responseButtons[i].GetComponent<Image>().color = nonSelectedResponseBtnColor;
+
+            if (i == _activeBtn)
+            {
+                responseButtons[i].GetComponent<Button>().enabled = true;
+                responseButtons[i].GetComponent<Image>().color = selectedResponseBtnColor;
+            }
+        }
+    }
     private void RefreshResponseButtons()
     {
         foreach (var item in responseButtons)
