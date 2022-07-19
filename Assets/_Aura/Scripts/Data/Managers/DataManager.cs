@@ -36,6 +36,8 @@ public class DataManager : MonoBehaviour
     public void CommitBioData(int _ak, string _visitDate, string _comorbidities = null, string complaints = null)
     {
         //ToDo: adds ak number, visit date,comorbidities and complaints to the currentPatient object 
+        //input validation
+        
         currentPatientAk = _ak;
         currentPatientVisitDate = _visitDate;
         currentPatientComorbidities = _comorbidities;
@@ -80,20 +82,36 @@ public class DataManager : MonoBehaviour
         Dictionary<int, List<PatientInfo>> patientData;
         if (int.TryParse(_akNo, out ak))
         {
-            AKTitle.text = "INFO FOR AKNO: "+ ak.ToString();
+            
             SaveLoadSystem.RetrievePatientInfo(out patientData);
-            if (patientData.TryGetValue(ak, out List<PatientInfo> data))
+            if(patientData == null)
             {
-                GameObject itemObj;
-                foreach (var item in data)
+                AKTitle.text = "INFO FOR AKNO: ";
+                FindObjectOfType<RetrievePageBackend>(true).HandleNoPatientError();
+                return;
+            }
+            else
+            {
+                if (patientData.TryGetValue(ak, out List<PatientInfo> data))
                 {
-                    itemObj = Instantiate(retrievedInfoItem);
-                    itemObj.transform.SetParent(retrievedInfoItemHolder, false);
+                    AKTitle.text = "INFO FOR AKNO: " + ak.ToString();
+                    GameObject itemObj;
+                    foreach (var item in data)
+                    {
+                        itemObj = Instantiate(retrievedInfoItem);
+                        itemObj.transform.SetParent(retrievedInfoItemHolder, false);
 
-                    itemObj.GetComponent<RetrievedInfoItem>().SetUpItem(item.VisitDate, item.Region, item.Score.ToString());
-                    retrievedInfoItems.Add(itemObj);
+                        itemObj.GetComponent<RetrievedInfoItem>().SetUpItem(item.VisitDate, item.Region, item.Score.ToString());
+                        retrievedInfoItems.Add(itemObj);
+                    }
+                }
+                else
+                {
+                    AKTitle.text = "INFO FOR AKNO: ";
+                    FindObjectOfType<RetrievePageBackend>(true).HandleNoPatientError();
                 }
             }
+            
         }
         else
         {

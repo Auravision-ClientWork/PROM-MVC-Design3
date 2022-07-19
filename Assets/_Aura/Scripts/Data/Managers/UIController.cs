@@ -17,7 +17,10 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-       ShowMenuPage();
+    }
+    private void Start()
+    {
+       ShowMenuPage();     
     }
     public void CloseAllPages()
     {

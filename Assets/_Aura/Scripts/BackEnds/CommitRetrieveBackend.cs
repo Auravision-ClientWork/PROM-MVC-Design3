@@ -14,34 +14,71 @@ public class CommitRetrieveBackend : MonoBehaviour
     private bool isMale = false;
     private bool isFemale = false;
     [SerializeField]private ModelType modelType;
+    public GameObject SelectRegionButton;
+    public GameObject warningPanel;
+    public TMP_Text digitsOnlyText;
+
+
+    private void Start()
+    {
+        warningPanel.SetActive(false);
+        SelectRegionButton.SetActive(false);
+    }
     public void SetCurrentPatientBioData()
     {
-        var ak = int.Parse(akInput.text);
-        var visit = visitDateInput.text;
-        var comorbid = comorbiditiesInput.text;
-        var complaints = complaintsInput.text;
-        dataManager.CommitBioData(ak, visit, comorbid, complaints);
-
-        if (isMale)
+        //input validation
+        int ak;
+        if (int.TryParse(akInput.text,out ak))
         {
-            modelType = ModelType.Male;
+            var visit = visitDateInput.text;
+            var comorbid = comorbiditiesInput.text;
+            var complaints = complaintsInput.text;
+            dataManager.CommitBioData(ak, visit, comorbid, complaints);
+            uiController.CloseAllPages();
+            GameManager.Instance.GoTo3D(modelType);
         }
-        else if (isFemale)
+        else
         {
-            modelType =ModelType.Female;    
+            //ToDo:show error message
+            warningPanel.SetActive(true);
+            SelectRegionButton.SetActive(false);
+            digitsOnlyText.text = "AK No should be whole numbers only.";
+           
+            return;
         }
-   
-        uiController.CloseAllPages();
-        GameManager.Instance.GoTo3D(modelType);
+      
+        
     }
 
     public void SetIsMale(bool _value)
     {
-        isMale = _value;
+       
+        if (_value == true)
+        {
+            modelType = ModelType.Male;
+            SelectRegionButton.SetActive(true);
+        }
+        else
+        {
+            SelectRegionButton.SetActive(false);
+
+        }
+
     }
     public void SetIsFemale(bool _value)
     {
-        isFemale = _value;
+        
+        if (_value == true)
+        {
+            modelType = ModelType.Female;
+            isFemale = _value;
+            SelectRegionButton.SetActive(true);
+        }
+        else
+        {
+            SelectRegionButton.SetActive(false);
+
+        }
     }
 
     public void ResetInputs()
@@ -50,5 +87,10 @@ public class CommitRetrieveBackend : MonoBehaviour
         visitDateInput.text = "";
         comorbiditiesInput.text = "";
         complaintsInput.text = "";
+    }
+    public void HandleOKDismissWarningButton()
+    {
+        ResetInputs();
+        warningPanel.SetActive(false);
     }
 }

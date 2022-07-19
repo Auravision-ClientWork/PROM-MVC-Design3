@@ -212,6 +212,7 @@ public class ScoreBackend : MonoBehaviour
         AudioManager.Instance.PlaySelectionActionFX();
         //take the score and send it to the Datamanager
         DataManager.Instance.CommitScoreData(currentMaxScore);
+        CloseAllPanels();
         UIController.Instance.ShowMenuPage();
     }
 
