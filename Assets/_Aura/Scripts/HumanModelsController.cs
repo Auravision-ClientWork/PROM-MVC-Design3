@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class HumanModelsController : MonoBehaviour
 {
- private void Start() 
- {
-    
- }
+    public GameObject maleModel;
+    public GameObject femaleModel;
+
+    public void TurnOnModel(ModelType _model)
+    {
+        switch (_model)
+        {
+            case ModelType.Male:
+                break;
+                case ModelType.Female:
+                break;
+        }
+    }
+}
+public enum ModelType
+{
+    Male,Female
 }
