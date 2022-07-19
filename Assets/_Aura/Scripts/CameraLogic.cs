@@ -56,8 +56,8 @@ public class CameraLogic : MonoBehaviour
         m_cameraTarget.y += m_offsetAbove;
 
 
-        m_rotationX += m_moveInput.x * m_lookSensitivity* m_lookSpeed;
-        m_rotationY -= m_moveInput.y * m_lookSensitivity * m_lookSpeed;
+        m_rotationX += m_moveInput.x * m_lookSensitivity* m_lookSpeed * Time.deltaTime;
+        m_rotationY -= m_moveInput.y * m_lookSensitivity * m_lookSpeed * Time.deltaTime;
         m_rotationY = Mathf.Clamp(m_rotationY, m_maxLookUp, m_maxLookDown);
 
     }

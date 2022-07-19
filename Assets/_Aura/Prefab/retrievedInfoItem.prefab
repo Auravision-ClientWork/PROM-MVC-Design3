@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 5149961411223272567}
   - component: {fileID: 5149961411223272566}
   - component: {fileID: 5149961411223272561}
+  - component: {fileID: 6583851808253834403}
   m_Layer: 5
   m_Name: retrievedInfoItem
   m_TagString: Untagged
@@ -183,6 +184,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6583851808253834403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149961411223272563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19a971a4f781c849b3d11b838b41da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visitDateTxt: {fileID: 5149961411497137112}
+  regionTxt: {fileID: 5149961412524428970}
+  scoreTxt: {fileID: 5149961412044028233}
 --- !u!1 &5149961411288370650
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +288,7 @@ GameObject:
   - component: {fileID: 5149961411497137113}
   - component: {fileID: 5149961411497137112}
   m_Layer: 5
-  m_Name: TextTitle
+  m_Name: visitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +500,7 @@ GameObject:
   - component: {fileID: 5149961412044028238}
   - component: {fileID: 5149961412044028233}
   m_Layer: 5
-  m_Name: TextTitle
+  m_Name: scoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,7 +635,7 @@ GameObject:
   - component: {fileID: 5149961412524428971}
   - component: {fileID: 5149961412524428970}
   m_Layer: 5
-  m_Name: TextTitle
+  m_Name: regionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

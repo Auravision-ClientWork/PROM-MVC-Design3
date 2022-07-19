@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using System.Text;
 using System;
+using TMPro;
 
 /// <summary>
 /// Commits new patient data via the SaveAndLoadSystem, retrieves data via the SaveAndLoad system,
@@ -21,6 +22,11 @@ public class DataManager : MonoBehaviour
     [SerializeField] private string currentPatientRegion;
     [SerializeField] private float currentPatientScore;
 
+    public TMP_Text AKTitle;
+    public Transform retrievedInfoItemHolder;
+    public GameObject retrievedInfoItem;
+
+    [SerializeField]private List<GameObject> retrievedInfoItems = new List<GameObject>();
 
     public static DataManager Instance;
     private void Awake()
@@ -50,6 +56,7 @@ public class DataManager : MonoBehaviour
     public void CommitScoreData(float _score)
     {
         currentPatientScore = _score;
+        SaveCurrentPatientData();
     }
 
     private void SaveCurrentPatientData()
@@ -63,9 +70,49 @@ public class DataManager : MonoBehaviour
 
         //passes this newPatient object to the SaveAndLoadSystem for serialization.
         SaveLoadSystem.SavePatientInfo(newPatient);
+        Debug.Log("saved data for " + currentPatientAk);
+    }
+
+    public void RetrieveDataForAk(string _akNo)
+    {
+        ClearRetrievedItemList();
+        int ak;
+        Dictionary<int, List<PatientInfo>> patientData;
+        if (int.TryParse(_akNo, out ak))
+        {
+            AKTitle.text = "INFO FOR AKNO: "+ ak.ToString();
+            SaveLoadSystem.RetrievePatientInfo(out patientData);
+            if (patientData.TryGetValue(ak, out List<PatientInfo> data))
+            {
+                GameObject itemObj;
+                foreach (var item in data)
+                {
+                    itemObj = Instantiate(retrievedInfoItem);
+                    itemObj.transform.SetParent(retrievedInfoItemHolder, false);
+
+                    itemObj.GetComponent<RetrievedInfoItem>().SetUpItem(item.VisitDate, item.Region, item.Score.ToString());
+                    retrievedInfoItems.Add(itemObj);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("Please input a number!");
+        }
+
+        //Handle the query
+       
 
     }
 
+    private void ClearRetrievedItemList()
+    {
+        foreach (var item in retrievedInfoItems)
+        {
+            Destroy(item);
+        }
+        retrievedInfoItems.Clear();
+    }
     #region Test Utility
     //public void TestCommitInfo(int _ak, string _visitDate, string _region, string _comorbidities, string _complaints, float _score)
     //{

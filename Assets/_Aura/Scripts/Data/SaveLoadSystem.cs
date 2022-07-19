@@ -74,7 +74,7 @@ public static class SaveLoadSystem
     private static void SerializeInfo(string patientDataString)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/patientdata.data";
+        string path = Application.persistentDataPath + "/newpatientdata.data";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, patientDataString);
@@ -83,7 +83,7 @@ public static class SaveLoadSystem
 
     private static string DeserializeInfo()
     {
-        string path = Application.persistentDataPath + "/patientdata.data";
+        string path = Application.persistentDataPath + "/newpatientdata.data";
         string info = null;
 
         if (File.Exists(path))

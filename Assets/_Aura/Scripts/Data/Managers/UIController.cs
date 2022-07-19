@@ -56,5 +56,6 @@ public class UIController : MonoBehaviour
     {
         CloseAllPages();
         commitRetrievePage.SetActive(true);
+        commitRetrievePage.GetComponent<CommitRetrieveBackend>().ResetInputs();
     }
 }
